@@ -13,7 +13,7 @@ function handleError(code) {
     }
 }
 
-function handleMessage(message) {
+function handleMessage(message: Message) {
     if (!message.content.startsWith('!')) {
         return;
     }

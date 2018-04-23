@@ -11,6 +11,7 @@
             "outFiles": ["${workspaceRoot}/dist/**/*.js"],
             "program": "${workspaceRoot}/src/server.ts",
             "request": "launch",
+            "preLaunchTask": "tsc: build - tsconfig.json",
             "runtimeArgs": [
                 "--nolazy"
             ],
