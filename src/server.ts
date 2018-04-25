@@ -1,39 +1,31 @@
-import * as Discord from 'discord.js';
+import { Client, Message, TextChannel, DMChannel, GroupDMChannel } from 'discord.js';
 import * as request from 'request';
+import { DNDService } from './DNDService';
 
-const client = new Discord.Client();
+const client: Client = new Client();
+const api: DNDService = DNDService.getInstance();
 
 client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');
 
 client.on('message', handleMessage.bind(this));
     
-function handleError(code) {
+function handleError(code: Number): string {
     if(code == 404) {
         return 'I have no idea what I am doing!';
     }
 }
 
-function handleMessage(message: Message) {
-    if (!message.content.startsWith('!')) {
+function handleMessage(message: Message): void {
+    if (message.content.charAt(0) != '!') {
         return;
     }
 
-    let command = message.content.toLowerCase().split(' ')[0];
-    let channel = message.channel;
-    switch(command) {
-        case '!help':
-            channel.send(commandHelp());
-            break;
-        case '!attr':
-            channel.send(commandAttr());
-            break;
-        default:
-            channel.send('Command not recognized, try !help');
-            break;
-    }
+    let command: string = message.content.toLowerCase().split(' ')[0];
+    let channel: TextChannel | DMChannel | GroupDMChannel = message.channel;
+    channel.send(api.makeRequest(command));
 }
 
-function commandHelp() {
+function commandHelp(): string {
     return `
         Available commands:
         1. Ability Scores = !attr [ability]
@@ -46,28 +38,6 @@ function commandHelp() {
         `;
 }
 
-function commandAttr() {
+function commandAttr(): string {
     return 'hello';
 }
-
-function abilityScores(message) {
-    let channel = message.channel;
-
-
-    if(message.content.toLowerCase() == '!str' ) {
-        request('http://dnd5eapi.co/api/ability-scores/1', (error, response, body) => {
-            if(response.statusCode != 200) {
-                channel.send(handleError(response.statusCode));
-            } else {
-                channel.send(handleResponse(body));
-            }
-        });
-    }
-}
-
-function handleResponse(body) {
-    let details = JSON.parse(body);
-    return `${details.full_name}: ${details.desc}`;
-}
-
-client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');

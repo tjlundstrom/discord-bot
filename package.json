@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "@types/es6-collections": "^0.5.31",
-    "@types/lodash": "^4.14.107",
     "@types/node": "^9.6.6",
     "@types/request": "^2.47.0"
   }

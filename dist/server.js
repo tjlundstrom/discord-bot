@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Discord = require("discord.js");
+var discord_js_1 = require("discord.js");
 var request = require("request");
-var client = new Discord.Client();
+var client = new discord_js_1.Client();
 client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');
 client.on('message', handleMessage.bind(this));
 function handleError(code) {
@@ -11,7 +11,7 @@ function handleError(code) {
     }
 }
 function handleMessage(message) {
-    if (!message.content.startsWith('!')) {
+    if (message.content.charAt(0) != '!') {
         return;
     }
     var command = message.content.toLowerCase().split(' ')[0];
@@ -51,5 +51,4 @@ function handleResponse(body) {
     var details = JSON.parse(body);
     return details.full_name + ": " + details.desc;
 }
-client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');
 //# sourceMappingURL=server.js.map
