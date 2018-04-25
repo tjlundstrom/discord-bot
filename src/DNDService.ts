@@ -8,15 +8,16 @@ export class DNDService {
 
     }
 
-    public makeRequest(api: string, index?: number) {
+    public makeRequest(api: string, index?: number): DNDResponse {
+        let details: DNDResponse = new AbilityScoreResponse(); 
         request(`${this.baseUrl}/${api}/${index}`, (error, response, body) => {
             if(response.statusCode != 200) {
-                return;
+
             } else {
-                let details: DNDResponse = 
-                return details.getResponse();
+                
             }
         });
+        return details;
     }
 
     public static getInstance(): DNDService {

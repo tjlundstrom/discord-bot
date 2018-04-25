@@ -4,24 +4,21 @@ import { DNDService } from './DNDService';
 
 const client: Client = new Client();
 const api: DNDService = DNDService.getInstance();
-
 client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');
 
+
 client.on('message', handleMessage.bind(this));
-    
-function handleError(code: Number): string {
-    if(code == 404) {
-        return 'I have no idea what I am doing!';
-    }
-}
 
 function handleMessage(message: Message): void {
+    let channel: TextChannel | DMChannel | GroupDMChannel = message.channel;
+    let command: string = message.content.toLowerCase().split(' ')[0];
     if (message.content.charAt(0) != '!') {
         return;
     }
-
-    let command: string = message.content.toLowerCase().split(' ')[0];
-    let channel: TextChannel | DMChannel | GroupDMChannel = message.channel;
+    if(command == '!help') {
+        channel.send(commandHelp());
+    }
+   
     channel.send(api.makeRequest(command));
 }
 

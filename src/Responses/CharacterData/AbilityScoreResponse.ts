@@ -1,7 +1,8 @@
-export class AbilityScoreResponse implements DNDResponse  {
+class AbilityScoreResponse implements DNDResponse  {
     id: string;
     index: number;
     name: string;
+    uri: string;
     fullName: string;
     description: string;
     skills : Array<AbilityScoreSkill>;

@@ -11,17 +11,15 @@ var DNDService = /** @class */ (function () {
                 return;
             }
             else {
-                return;
+                var details = ;
+                return details.getResponse();
             }
         });
     };
-    Object.defineProperty(DNDService, "Instance", {
-        get: function () {
-            return this._instance || (this._instance = new this());
-        },
-        enumerable: true,
-        configurable: true
-    });
+    DNDService.getInstance = function () {
+        return this._instance || (this._instance = new this());
+    };
     return DNDService;
 }());
+exports.DNDService = DNDService;
 //# sourceMappingURL=DNDService.js.map
