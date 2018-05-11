@@ -1,19 +1,17 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var request = require("request");
+var Index_1 = require("./Responses/Index");
 var DNDService = /** @class */ (function () {
     function DNDService() {
         this.baseUrl = 'http://dnd5eapi.co/api';
     }
     DNDService.prototype.makeRequest = function (api, index) {
+        var details = new Index_1.AbilityScoreResponse();
+        details.id = 'Someid';
         request(this.baseUrl + "/" + api + "/" + index, function (error, response, body) {
-            if (response.statusCode != 200) {
-                return;
-            }
-            else {
-                return details.getResponse();
-            }
         });
+        return details;
     };
     DNDService.getInstance = function () {
         return this._instance || (this._instance = new this());
@@ -21,4 +19,3 @@ var DNDService = /** @class */ (function () {
     return DNDService;
 }());
 exports.DNDService = DNDService;
-//# sourceMappingURL=DNDService.js.map

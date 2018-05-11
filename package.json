@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "tsc server.ts && node server.js"
+    "start": "tsc src/server.ts && node dist/server.js"
   },
   "author": "Tyler Lundstrom",
   "license": "ISC",

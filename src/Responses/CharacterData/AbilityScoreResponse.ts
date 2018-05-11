@@ -1,4 +1,6 @@
-class AbilityScoreResponse implements DNDResponse  {
+import { DNDResponse } from '../DNDResponse';
+
+export class AbilityScoreResponse implements DNDResponse  {
     id: string;
     index: number;
     name: string;

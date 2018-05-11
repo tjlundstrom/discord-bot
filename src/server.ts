@@ -1,10 +1,10 @@
 import { Client, Message, TextChannel, DMChannel, GroupDMChannel } from 'discord.js';
-import * as request from 'request';
 import { DNDService } from './DNDService';
+import { Settings } from '../settings';
 
 const client: Client = new Client();
 const api: DNDService = DNDService.getInstance();
-client.login('NDM3NzgyMDY2NDQ1NDE4NTI4.Db7HBg.GGdlxath64zbFL03t4p3HtmI7_g');
+client.login(Settings.clientId);
 
 
 client.on('message', handleMessage.bind(this));

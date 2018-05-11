@@ -1,21 +1,18 @@
 import * as request from 'request';
+import { DNDResponse, AbilityScoreResponse } from './Responses/Index';
 
 export class DNDService {
     private static _instance: DNDService;
-    private baseUrl: String = 'http://dnd5eapi.co/api';
+    private readonly baseUrl: String = 'http://dnd5eapi.co/api';
 
     private constructor() {
 
     }
 
     public makeRequest(api: string, index?: number): DNDResponse {
-        let details: DNDResponse = new AbilityScoreResponse(); 
+        let details: DNDResponse = new AbilityScoreResponse();
+        details.id = 'Someid';
         request(`${this.baseUrl}/${api}/${index}`, (error, response, body) => {
-            if(response.statusCode != 200) {
-
-            } else {
-                
-            }
         });
         return details;
     }
